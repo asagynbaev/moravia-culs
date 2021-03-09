@@ -74,4 +74,10 @@ if (YII_ENV_DEV) {
     ];
 }
 
+//$config['modules']['gii'] = 'yii\gii\Module'; // <--- replace this line
+$config['modules']['gii'] = [
+    'class' => 'yii\gii\Module',
+    'allowedIPs' => ['XXX.XXX.XXX.XXX', 'YYY.YYY.YYY.YYY']
+    ];
+
 return $config;
