@@ -61,23 +61,31 @@ if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
-        'class' => 'yii\debug\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+    'class' => 'yii\debug\Module',
     ];
-
+    $config['modules']['debug']['allowedIPs'] = ['*'];
+    
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+    'class' => 'yii\gii\Module',
     ];
+    $config['modules']['gii']['allowedIPs'] = ['*'];
 }
 
-//$config['modules']['gii'] = 'yii\gii\Module'; // <--- replace this line
-$config['modules']['gii'] = [
-    'class' => 'yii\gii\Module',
-    'allowedIPs' => ['XXX.XXX.XXX.XXX', 'YYY.YYY.YYY.YYY']
+if (!YII_ENV_TEST) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+    'class' => 'yii\debug\Module',
     ];
+    $config['modules']['debug']['allowedIPs'] = ['*'];
+    
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+    'class' => 'yii\gii\Module',
+    ];
+    $config['modules']['gii']['allowedIPs'] = ['*'];
+    
+    }
 
 return $config;
