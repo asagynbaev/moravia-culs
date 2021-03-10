@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="images/penzion-mikulov.png" alt="pension the hill">
+                    <img src="images/accommodation/penzion-mikulov.png" alt="pension the hill">
                   </td>
                   <td><b>Městský penzion Mikulov </b><br><br>
                     Městský penzion Mikulov is offering accommodation in Mikulov. Featuring family rooms, this property
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="images/hotel-salety.png" alt="old town hotel">
+                    <img src="images/accommodation/hotel-salety.png" alt="old town hotel">
                   </td>
                   <td><b>Hotel Salety</b><br><br>
                     Located in the historical part of Valtice in the Lednice-Valtice Area, in the wine region of
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="images/pension-zajecak.png" alt="yellow hotel building with hotel sign">
+                    <img src="images/accommodation/pension-zajecak.png" alt="yellow hotel building with hotel sign">
                   </td>
                   <td><b>Penzion Zaječák</b><br><br>
                     Penzion Zaječák has a restaurant, outdoor swimming pool, a bar and shared lounge in Zaječí. The
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="images/hotel-mikulov.png" alt="old hotel building with small garden">
+                    <img src="images/accommodation/hotel-mikulov.png" alt="old hotel building with small garden">
                   </td>
                   <td><b>Hotel Mikulov</b><br><br>
                     Presenting a wellness area with a rooftop swimming pool, a restaurant serving Czech and Moravian
@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="images/hotel-savannah.png" alt="alone stadning hotel building">
+                    <img src="images/accommodation/hotel-savannah.png" alt="alone stadning hotel building">
                   </td>
                   <td><b>Hotel Savannah</b><br><br>
                     Hotel Savannah has a restaurant, fitness centre, a bar and garden in Chvalovice. Boasting family
@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="images/hotel-katarina.png" alt="hotel in family house building">
+                    <img src="images/accommodation/hotel-katarina.png" alt="hotel in family house building">
                   </td>
                   <td><b>Hotel Katarina</b><br><br>
                     Reconstructed in 2016, situated in the town centre of Znojmo and overlooking the Podyjí National

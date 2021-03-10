@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="images/podyji-national-park.png" class="img-responsive" alt="Hills and rocks">
+                            <img src="images/destination/podyji-national-park.png" class="img-responsive" alt="Hills and rocks">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="images/lednice-valtice.png" class="img-responsive" alt="White Castle">
+                            <img src="images/destination/lednice-valtice.png" class="img-responsive" alt="White Castle">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="images/mikulov-moravia.png" class="img-responsive"
+                            <img src="images/destination/mikulov-moravia.png" class="img-responsive"
                                 alt="Mikulov castle on the hill">
                         </div>
                     </div>
@@ -95,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="images/kromeriz.png" class="img-responsive" alt="old town square">
+                            <img src="images/destination/kromeriz.png" class="img-responsive" alt="old town square">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="images/olomouc-moravia.png" class="img-responsive"
+                            <img src="images/destination/olomouc-moravia.png" class="img-responsive"
                                 alt="old town square panoramic view">
                         </div>
                     </div>
@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="images/praded-czechia.png" class="img-responsive" alt="Mountain with snow top">
+                            <img src="images/destination/praded-czechia.png" class="img-responsive" alt="Mountain with snow top">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">

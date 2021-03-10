@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="images/restaurant-essens.png" class="img-fluid rounded-top"
+                        <img src="images/restaurant/restaurant-essens.png" class="img-fluid rounded-top"
                             alt="underground restaurant room">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="images/steak-house-cody.png" class="img-fluid rounded-top"
+                        <img src="images/restaurant/steak-house-cody.png" class="img-fluid rounded-top"
                             alt="restaurant wooden room">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="images/restaurant-brandy-la-moravia.png" class="img-fluid rounded-top"
+                        <img src="images/restaurant/restaurant-brandy-la-moravia.png" class="img-fluid rounded-top"
                             alt="waiter with beer on tap">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>
@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="images/restaurant-baltaci.png" class="img-fluid rounded-top"
+                        <img src="images/restaurant/restaurant-baltaci.png" class="img-fluid rounded-top"
                             alt="modern restaurant room">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="images/restaurant-umbrella.png" class="img-fluid rounded-top"
+                        <img src="images/restaurant/restaurant-umbrella.png" class="img-fluid rounded-top"
                             alt="Christmar tree with restaurant name">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="images/restaurant-moravska.png" class="img-fluid rounded-top"
+                        <img src="images/restaurant/restaurant-moravska.png" class="img-fluid rounded-top"
                             alt="wooden restaurant room with white walls">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>
