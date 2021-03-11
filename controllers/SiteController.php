@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Location;
 
 class SiteController extends Controller
 {
@@ -123,16 +124,19 @@ class SiteController extends Controller
      */
     public function actionWheretogo()
     {
-        return $this->render('wheretogo');
+        $locations = (new Location())->getDestinations();
+        return $this->render('wheretogo', array('destinations' => $locations));
     }
 
     public function actionWheretoeat()
     {
-        return $this->render('wheretoeat');
+        $locations = (new Location())->getRestaurants();
+        return $this->render('wheretoeat', array('restaurants' => $locations));
     }
 
     public function actionWheretostay()
     {
-        return $this->render('wheretostay');
+        $locations = (new Location())->getAccommodations();
+        return $this->render('wheretostay', array('accommodations' => $locations));
     }
 }
