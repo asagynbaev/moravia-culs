@@ -43,7 +43,7 @@ AppAsset::register($this);
             ['label' => 'Where To Eat', 'url' => ['/site/wheretoeat']],
             ['label' => 'Where To Stay', 'url' => ['/site/wheretostay']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Admin Panel', 'url' => ['/admin/test']],
+            ['label' => 'Admin Panel', 'url' => ['/admin']],
         ],
     ]);
     NavBar::end();
