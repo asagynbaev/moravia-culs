@@ -24,6 +24,13 @@ class Location extends ActiveRecord {
         ];
     }
 
+    public function getAll() {
+        $locations = Location::find()
+        ->all();
+
+        return $this->locationsWithImageUrl($locations);
+    }
+
     public function getDestinations() {
         $locationType = new LocationType();
         $locations = Location::find()

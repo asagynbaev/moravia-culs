@@ -8,9 +8,9 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\AppAssetAdmin;
 
-AppAsset::register($this);
+AppAssetAdmin::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -19,6 +19,15 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -38,13 +47,24 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Where To Go', 'url' => ['/site/wheretogo']],
-            ['label' => 'Where To Eat', 'url' => ['/site/wheretoeat']],
-            ['label' => 'Where To Stay', 'url' => ['/site/wheretostay']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Admin Panel', 'url' => ['/admin/test']],
+            ['label' => 'Back to website', 'url' => ['/site/index']],
         ],
+    ]);
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+    } else {
+        $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
+    }
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => $menuItems,
     ]);
     NavBar::end();
     ?>
@@ -57,19 +77,6 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-<?php
-if($this->title == "Home" || $this->title == "Login")
-    echo ("");
-else
-    echo("
-    <!--Google map-->
-    <div id='map-container-google-1' class='z-depth-1-half map-container' style='height: 10px; margin-top: 30px;'>
-        <iframe src='https://www.google.com/maps/d/embed?mid=1aydHM17ZcDRIQ9RRjD4LlWDiMqNgNPeY' style='border:0'
-            allowfullscreen></iframe>
-    </div>
-    <!--Google Maps-->
-    ");
-?>
 
 <!--footer-->
 <section id="footer">
@@ -88,12 +95,9 @@ else
           <div class="col-md-4 footer-box">
             <p>OUR SOCIAL MEDIA</p>
             <!--microformat hCard-->
-            <a class="h-card" href="https://twitter.com/TravelMoravia"><img src="images/twitter.png"
-                alt="Twitter icon"></a>
-            <a class="h-card" href="https://facebook.com/TravelMoravia"><img src="images/instagram.png"
-                alt="Instagram icon"></a>
-            <a class="h-card" href="https://instagram.com/TravelMoravia"><img src="images/facebook.png"
-                alt="Facebook icon"></a>
+            <a class="h-card" href="https://twitter.com/TravelMoravia"><i class="material-icons" data-toggle="twitter">&#xf099;</i></a>
+            <a class="h-card" href="https://facebook.com/TravelMoravia"><i class="material-icons" data-toggle="facebook">&#xf230;</i></a>
+            <a class="h-card" href="https://instagram.com/TravelMoravia"><i class="material-icons" data-toggle="instagram">&#xf16d;</i></a>
           </div>
           <div class="col-md-4 footer-box">
             <p>This website was made for study purposes by Gleb Dmitrievsky, Bunmeng Bo, Azimbek Sagynbaev.

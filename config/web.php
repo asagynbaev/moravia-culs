@@ -52,6 +52,7 @@ $config = [
                 'wheretoeat' => 'site/wheretoeat',
                 'wheretostay' => 'site/wheretostay',
                 'contact' => 'site/contact',
+                'login' => 'site/login',
             ]],
     ],
     'params' => $params,
