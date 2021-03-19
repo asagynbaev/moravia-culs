@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use app\models\LocationType;
 
@@ -14,63 +15,63 @@ class Location extends ActiveRecord {
         return 'location';
     }
 
+    public function rules() {
+        return [
+            ['name', 'required', 'message' => 'Please input name'],
+            ['address', 'required', 'message' => 'Please input address'],
+            ['description', 'required', 'message' => 'Please input description'],
+            ['location_type', 'required', 'message' => 'Please select location type'],
+        ];
+    }
+
+    public function getLocationImages() {
+        return $this->hasMany(LocationImage::className(), ['location_id' => 'id']);
+    }
+
+    public function getLocationType() {
+        return $this->hasOne(LocationType::className(), ['id' => 'location_type']);
+    }
+
     public function attributeLabels() {
         return [
-            'id' => Yii::t('app', 'id'),
-            'name' => Yii::t('app', 'name'),
-            'address' => Yii::t('app', 'address'),
-            'description' => Yii::t('app', 'description'),
-            'location_type' => Yii::t('app', 'location_type')
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'address' => Yii::t('app', 'Address'),
+            'description' => Yii::t('app', 'Description'),
+            'location_type' => Yii::t('app', 'Location Type'),
+            'locationType' => Yii::t('app', 'Location Type'),
         ];
     }
 
     public function getAll() {
-        $locations = Location::find()
-        ->all();
-
-        return $this->locationsWithImageUrl($locations);
+        return Location::find()
+            ->all();
     }
 
     public function getDestinations() {
         $locationType = new LocationType();
-        $locations = Location::find()
+        return Location::find()
             ->where(['location_type' => $locationType->destinationId()])
             ->all();
-
-        return $this->locationsWithImageUrl($locations);
     }
 
     public function getAccommodations() {
         $locationType = new LocationType();
-        $locations = Location::find()
+        return Location::find()
             ->where(['location_type' => $locationType->accommodationId()])
             ->all();
-
-        return $this->locationsWithImageUrl($locations);
     }
 
     public function getRestaurants() {
         $locationType = new LocationType();
-        $locations = Location::find()
+        return Location::find()
             ->where(['location_type' => $locationType->restaurantId()])
             ->all();
-
-        return $this->locationsWithImageUrl($locations);
     }
 
-    public function getImageUrlFor($location_id) {
-        $imageLocation = LocationImage::find()->where(['location_id' => $location_id])->one();
-        return $imageLocation->image_url;
-    }
-
-    public function locationsWithImageUrl($locations) {
-        $arr_locations = array();
-        foreach($locations as $loc) {
-            $image_url = $this->getImageUrlFor($loc->id);
-            $loc->image_url = $image_url;
-            array_push($arr_locations, $loc);
-        }
-        return $arr_locations;
+    public function getLastId() {
+        $max_id = Location::find()->max('id');
+        return $max_id;
     }
 
 }

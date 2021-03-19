@@ -11,6 +11,10 @@ class LocationType extends ActiveRecord {
         return 'location_type';
     }
 
+    public function getLocations() {
+        return $this->hasMany(Location::className(), ['location_type' => 'id']);
+    }
+
     public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'id'),

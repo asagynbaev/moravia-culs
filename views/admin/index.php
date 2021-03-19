@@ -31,12 +31,14 @@ $dataProvider = new ActiveDataProvider([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            
             'name',
-            'address:ntext',
-            'description:ntext',
-            'location_type',
+            'address',
+            'description',
+            [
+                'label' => 'Location Type',
+                'attribute' => 'locationType.name'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

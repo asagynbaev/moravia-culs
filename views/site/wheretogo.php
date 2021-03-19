@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                         <div class="post-type post-img">
-                            <img src="<?= $dest->image_url ?>" class="img-responsive" alt="Hills and rocks">
+                            <img src="<?= $dest->locationImages[0]->image_url ?>" class="img-responsive" alt="Hills and rocks">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">

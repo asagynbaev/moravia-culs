@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4 col-md-6 mt-4 pt-2">
                 <div class="blog-post rounded border">
                     <div class="blog-img d-block overflow-hidden position-relative">
-                        <img src="<?= $rest->image_url ?>" class="img-fluid rounded-top"
+                        <img src="<?= $rest->locationImages[0]->image_url ?>" class="img-fluid rounded-top"
                             alt="underground restaurant room">
                         <div class="overlay rounded-top bg-dark"></div>
                     </div>

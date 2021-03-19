@@ -11,6 +11,10 @@ class LocationImage extends ActiveRecord {
         return 'location_image';
     }
 
+    public function getLocation() {
+        return $this->hasOne(Location::className(), ['id' => 'location_id']);
+    }
+
     public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'id'),
