@@ -33,7 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'address:ntext',
             'description:ntext',
-            'location_type',
+            [
+                'label' => 'Location Type',
+                'attribute' => 'locationType.name',
+            ],
+            [
+                'label' => 'Image',
+                'format' => 'html',
+                'value' => function ($data) {
+                    $url = Yii::$app->request->baseUrl.'/'.$data->getImageUrl();
+                    return Html::img($url, ['width' => '120px']);
+                }
+            ]
         ],
     ]) ?>
 

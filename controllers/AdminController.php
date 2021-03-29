@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -68,7 +69,8 @@ class AdminController extends Controller
     {
         $model = $this->findModel($id);
         $this->layout = 'admin';
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($this->saveModel($model)) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -81,7 +83,8 @@ class AdminController extends Controller
     {
         $model = new Location();
         $this->layout = 'admin';
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($this->saveModel($model)) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -98,4 +101,20 @@ class AdminController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    protected function saveModel($model) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (empty($model->id)) {
+                $model->id = (int) $model->getLastId() + 1;
+            }
+
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->save()) {
+                $model->uploadImage();
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

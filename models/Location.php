@@ -9,7 +9,7 @@ use app\models\LocationType;
 
 class Location extends ActiveRecord {
 
-    public $image_url;
+    public $imageFile;
 
     public static function tableName() {
         return 'location';
@@ -32,6 +32,10 @@ class Location extends ActiveRecord {
         return $this->hasOne(LocationType::className(), ['id' => 'location_type']);
     }
 
+    public function getLocationStatus() {
+        return $this->hasOne(LocationStatus::className(), ['id' => 'status']);
+    }
+
     public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -51,27 +55,57 @@ class Location extends ActiveRecord {
     public function getDestinations() {
         $locationType = new LocationType();
         return Location::find()
-            ->where(['location_type' => $locationType->destinationId()])
+            ->where(['location_type' => $locationType->destinationId(), 'status' => $locationStatus->activeId()])
             ->all();
     }
 
     public function getAccommodations() {
         $locationType = new LocationType();
         return Location::find()
-            ->where(['location_type' => $locationType->accommodationId()])
+            ->where(['location_type' => $locationType->accommodationId(), 'status' => $locationStatus->activeId()])
             ->all();
     }
 
     public function getRestaurants() {
         $locationType = new LocationType();
         return Location::find()
-            ->where(['location_type' => $locationType->restaurantId()])
+            ->where(['location_type' => $locationType->restaurantId(), 'status' => $locationStatus->activeId()])
             ->all();
     }
 
     public function getLastId() {
         $max_id = Location::find()->max('id');
         return $max_id;
+    }
+
+    public function getImageUrl() {
+        if (empty($this->locationImages)) {
+            return NULL;
+        }
+        return $this->locationImages[0]->image_url;
+    }
+
+    public function uploadImage() {
+        if (empty($this->imageFile)) {
+            return;
+        }
+
+        $imagePath = 'images/' . strtolower($this->locationType->name) . '/' . $this->imageFile->baseName . '.' . $this->imageFile->extension;
+        $this->imageFile->saveAs($imagePath);
+        $this->saveUploadedImage($imagePath);
+    }
+
+    private function saveUploadedImage($imagePath) {
+        $modelLocationImage = LocationImage::find()->where(['location_id' => $this->id])->all();
+        if (empty($modelLocationImage)) {
+            $model = new LocationImage();
+            $model->location_id = $this->id;
+            $model->image_url = $imagePath;
+            $model->save();
+        } else {
+            $modelLocationImage[0]->image_url = $imagePath;
+            $modelLocationImage[0]->save();
+        }
     }
 
 }

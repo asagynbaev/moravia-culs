@@ -32,12 +32,24 @@ $dataProvider = new ActiveDataProvider([
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             
+            [
+                'label' => 'Image',
+                'format' => 'html',
+                'value' => function ($data) {
+                    $url = Yii::$app->request->baseUrl.'/'.$data->getImageUrl();
+                    return Html::img($url, ['width' => '80px']);
+                }
+            ],
             'name',
             'address',
             'description',
             [
                 'label' => 'Location Type',
                 'attribute' => 'locationType.name'
+            ],
+            [
+                'label' => 'Status',
+                'attribute' => 'locationStatus.status'
             ],
 
             ['class' => 'yii\grid\ActionColumn'],
