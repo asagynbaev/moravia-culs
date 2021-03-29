@@ -1,6 +1,7 @@
 <?php
 
-$unix_socket_path = '/Applications/MAMP/tmp/mysql/mysql.sock';
+// $unix_socket_path = 'C:/xampp/mysql/mysql.sock'; // XAMPP
+$unix_socket_path = '/Applications/MAMP/tmp/mysql/mysql.sock'; // MAMP
 
 return [
     'class' => 'yii\db\Connection',
