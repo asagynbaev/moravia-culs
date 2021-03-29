@@ -6,6 +6,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use app\models\LocationType;
+use app\models\LocationStatus;
 
 class Location extends ActiveRecord {
 
@@ -53,29 +54,39 @@ class Location extends ActiveRecord {
     }
 
     public function getDestinations() {
-        $locationType = new LocationType();
         return Location::find()
-            ->where(['location_type' => $locationType->destinationId(), 'status' => $locationStatus->activeId()])
+            ->where(['location_type' => LocationType::DESTINATION_ID(), 'status' => LocationStatus::ACTIVE_ID()])
             ->all();
     }
 
     public function getAccommodations() {
-        $locationType = new LocationType();
         return Location::find()
-            ->where(['location_type' => $locationType->accommodationId(), 'status' => $locationStatus->activeId()])
+            ->where(['location_type' => LocationType::ACCOMMODATION_ID(), 'status' => LocationStatus::ACTIVE_ID()])
             ->all();
     }
 
     public function getRestaurants() {
         $locationType = new LocationType();
         return Location::find()
-            ->where(['location_type' => $locationType->restaurantId(), 'status' => $locationStatus->activeId()])
+            ->where(['location_type' => LocationType::RESTAURANT_ID(), 'status' => LocationStatus::ACTIVE_ID()])
             ->all();
     }
 
     public function getLastId() {
         $max_id = Location::find()->max('id');
         return $max_id;
+    }
+
+    public function isStatusActive() {
+        return $this->status == LocationStatus::ACTIVE_ID();
+    }
+
+    public function switchStatus() {
+        if ($this->isStatusActive()) {
+            $this->status = LocationStatus::INACTIVE_ID();
+        }  else {
+            $this->status = LocationStatus::ACTIVE_ID();
+        }
     }
 
     public function getImageUrl() {

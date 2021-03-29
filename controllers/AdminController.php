@@ -93,6 +93,17 @@ class AdminController extends Controller
         ]);
     }
 
+    public function actionDelete($id) {
+        $model = $this->findModel($id);
+        $this->layout = 'admin';
+
+        $model->switchStatus();
+        $model->save();
+
+        $locations = (new Location())->getAll();
+        return $this->redirect(['index', array('model' => $locations)]);
+    }
+
     protected function findModel($id)
     {
         if (($model = Location::findOne($id)) !== null) {

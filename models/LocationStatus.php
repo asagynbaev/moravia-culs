@@ -22,18 +22,18 @@ class LocationStatus extends ActiveRecord {
         ];
     }
 
-    public function getActiveId() {
-        $activeId = LocationStatus::find()
+    public static function ACTIVE_ID() {
+        $locationStatus = LocationStatus::find()
             ->where(['status' => 'Active'])
             ->one();
-        return $activeId;
+        return $locationStatus->id;
     }
 
-    public function getInactiveId() {
-        $inactiveId = LocationStatus::find()
+    public static function INACTIVE_ID() {
+        $locationStatus = LocationStatus::find()
             ->where(['status' => 'Inactive'])
             ->one();
-        return $inactiveId;
+        return $locationStatus->id;
     }
 
 }

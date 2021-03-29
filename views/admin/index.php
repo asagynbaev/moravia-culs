@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $dataProvider = new ActiveDataProvider([
     'query' => Location::find(),
     'pagination' => [
-        'pageSize' => 5,
+        'pageSize' => 10,
     ],
 ]);
 
