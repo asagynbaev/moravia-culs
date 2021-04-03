@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $dataProvider = new ActiveDataProvider([
     'query' => Location::find(),
     'pagination' => [
-        'pageSize' => 5,
+        'pageSize' => 10,
     ],
 ]);
 
@@ -31,12 +31,26 @@ $dataProvider = new ActiveDataProvider([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            
+            [
+                'label' => 'Image',
+                'format' => 'html',
+                'value' => function ($data) {
+                    $url = Yii::$app->request->baseUrl.'/'.$data->getImageUrl();
+                    return Html::img($url, ['width' => '80px']);
+                }
+            ],
             'name',
-            'address:ntext',
-            'description:ntext',
-            'location_type',
+            'address',
+            'description',
+            [
+                'label' => 'Location Type',
+                'attribute' => 'locationType.name'
+            ],
+            [
+                'label' => 'Status',
+                'attribute' => 'locationStatus.status'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

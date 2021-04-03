@@ -3,74 +3,120 @@
 namespace app\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use app\models\LocationType;
+use app\models\LocationStatus;
 
 class Location extends ActiveRecord {
 
-    public $image_url;
+    public $imageFile;
 
     public static function tableName() {
         return 'location';
     }
 
+    public function rules() {
+        return [
+            ['name', 'required', 'message' => 'Please input name'],
+            ['address', 'required', 'message' => 'Please input address'],
+            ['description', 'required', 'message' => 'Please input description'],
+            ['location_type', 'required', 'message' => 'Please select location type'],
+        ];
+    }
+
+    public function getLocationImages() {
+        return $this->hasMany(LocationImage::className(), ['location_id' => 'id']);
+    }
+
+    public function getLocationType() {
+        return $this->hasOne(LocationType::className(), ['id' => 'location_type']);
+    }
+
+    public function getLocationStatus() {
+        return $this->hasOne(LocationStatus::className(), ['id' => 'status']);
+    }
+
     public function attributeLabels() {
         return [
-            'id' => Yii::t('app', 'id'),
-            'name' => Yii::t('app', 'name'),
-            'address' => Yii::t('app', 'address'),
-            'description' => Yii::t('app', 'description'),
-            'location_type' => Yii::t('app', 'location_type')
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'address' => Yii::t('app', 'Address'),
+            'description' => Yii::t('app', 'Description'),
+            'location_type' => Yii::t('app', 'Location Type'),
+            'locationType' => Yii::t('app', 'Location Type'),
         ];
     }
 
     public function getAll() {
-        $locations = Location::find()
-        ->all();
-
-        return $this->locationsWithImageUrl($locations);
+        return Location::find()
+            ->all();
     }
 
     public function getDestinations() {
-        $locationType = new LocationType();
-        $locations = Location::find()
-            ->where(['location_type' => $locationType->destinationId()])
+        return Location::find()
+            ->where(['location_type' => LocationType::DESTINATION_ID(), 'status' => LocationStatus::ACTIVE_ID()])
             ->all();
-
-        return $this->locationsWithImageUrl($locations);
     }
 
     public function getAccommodations() {
-        $locationType = new LocationType();
-        $locations = Location::find()
-            ->where(['location_type' => $locationType->accommodationId()])
+        return Location::find()
+            ->where(['location_type' => LocationType::ACCOMMODATION_ID(), 'status' => LocationStatus::ACTIVE_ID()])
             ->all();
-
-        return $this->locationsWithImageUrl($locations);
     }
 
     public function getRestaurants() {
         $locationType = new LocationType();
-        $locations = Location::find()
-            ->where(['location_type' => $locationType->restaurantId()])
+        return Location::find()
+            ->where(['location_type' => LocationType::RESTAURANT_ID(), 'status' => LocationStatus::ACTIVE_ID()])
             ->all();
-
-        return $this->locationsWithImageUrl($locations);
     }
 
-    public function getImageUrlFor($location_id) {
-        $imageLocation = LocationImage::find()->where(['location_id' => $location_id])->one();
-        return $imageLocation->image_url;
+    public function getLastId() {
+        $max_id = Location::find()->max('id');
+        return $max_id;
     }
 
-    public function locationsWithImageUrl($locations) {
-        $arr_locations = array();
-        foreach($locations as $loc) {
-            $image_url = $this->getImageUrlFor($loc->id);
-            $loc->image_url = $image_url;
-            array_push($arr_locations, $loc);
+    public function isStatusActive() {
+        return $this->status == LocationStatus::ACTIVE_ID();
+    }
+
+    public function switchStatus() {
+        if ($this->isStatusActive()) {
+            $this->status = LocationStatus::INACTIVE_ID();
+        }  else {
+            $this->status = LocationStatus::ACTIVE_ID();
         }
-        return $arr_locations;
+    }
+
+    public function getImageUrl() {
+        if (empty($this->locationImages)) {
+            return NULL;
+        }
+        return $this->locationImages[0]->image_url;
+    }
+
+    public function uploadImage() {
+        if (empty($this->imageFile)) {
+            return;
+        }
+
+        $imagePath = 'images/' . strtolower($this->locationType->name) . '/' . $this->imageFile->baseName . '.' . $this->imageFile->extension;
+        $this->imageFile->saveAs($imagePath);
+        $this->saveUploadedImage($imagePath);
+    }
+
+    private function saveUploadedImage($imagePath) {
+        $modelLocationImage = LocationImage::find()->where(['location_id' => $this->id])->all();
+        if (empty($modelLocationImage)) {
+            $model = new LocationImage();
+            $model->location_id = $this->id;
+            $model->image_url = $imagePath;
+            $model->save();
+        } else {
+            $modelLocationImage[0]->image_url = $imagePath;
+            $modelLocationImage[0]->save();
+        }
     }
 
 }

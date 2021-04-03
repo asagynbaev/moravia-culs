@@ -17,10 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a($model->isStatusActive() ? 'Delete' : 'Re-Activate', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => $model->isStatusActive() ? 'Are you sure you want to delete this item?' : 'Are you sure you want to re-activate this item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -33,7 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'address:ntext',
             'description:ntext',
-            'location_type',
+            [
+                'label' => 'Location Type',
+                'attribute' => 'locationType.name',
+            ],
+            [
+                'label' => 'Image',
+                'format' => 'html',
+                'value' => function ($data) {
+                    $url = Yii::$app->request->baseUrl.'/'.$data->getImageUrl();
+                    return Html::img($url, ['width' => '120px']);
+                }
+            ]
         ],
     ]) ?>
 

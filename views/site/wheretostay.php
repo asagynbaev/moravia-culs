@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   <td class="p-0 text-center">
                   </td>
                   <td class="align-middle">
-                    <img src="<?= $acc->image_url ?>" alt="pension the hill">
+                    <img src="<?= $acc->locationImages[0]->image_url ?>" alt="pension the hill">
                   </td>
                   <td><b><?= $acc->name ?> </b><br><br>
                     <?= $acc->description ?>
