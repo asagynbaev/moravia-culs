@@ -42,6 +42,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="col-lg-offset-1" style="color:#999; margin-bottom:50px;">
         You may login with <strong>admin/admin</strong><br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
     </div>
 </div>

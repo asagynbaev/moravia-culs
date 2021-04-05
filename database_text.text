@@ -19,7 +19,7 @@ create table location (
     address text not null,
     description text not null,
     location_type int not null,
-    status int not null,
+    status int not null default '1',
     foreign key (location_type) references location_type(id),
     foreign key (status) references location_status(id)
 );
